@@ -49,13 +49,26 @@ reviewing before any commercial use.
 
 ## Images
 
-Every photo is capped at 640 px on its long side — that is the resolution Taplink
-exported, and no larger original exists in this repository's history. On a phone with a
-2x or 3x display these files are already being upscaled, so **the gallery must never
-render a photo larger than roughly 206 CSS px wide**, or the softness becomes obvious.
+The gallery is a two-column grid. Each cell is 206 CSS px wide at the 460 px layout
+width, and `calc(50vw - 24px)` below it — that is what the `sizes` attribute encodes.
 
-That constraint is why the gallery is a plain two-column grid with no row spans: a cell
-taller than ~309 px forces the browser to stretch a 640 px image past 1:1.
+The six gallery photos come from 4–8 megapixel originals, centre-cropped to 2:3 and
+exported to WebP (quality 80) at three widths, one per pixel density:
 
-To go further, replace the files with 2x exports (roughly 854 × 1280) and add
-`srcset`/`sizes` to each `<img>`.
+| Width | Serves | Total for six photos |
+| --- | --- | --- |
+| `206w` | 1x displays | 49 KB |
+| `412w` | 2x displays | 160 KB |
+| `618w` | 3x displays | 345 KB |
+
+The browser picks one per photo through `srcset`; verified against the server log at
+each density. Nothing in the gallery is ever upscaled. All six are lazy-loaded, so none
+of this lands on first paint.
+
+When replacing a photo, export it at all three widths and keep the exact 2:3 ratio —
+the grid relies on it to line rows up. Anything wider than 618 px is wasted: no cell
+ever renders larger than that.
+
+Still at the old 640 px export, no originals available yet: `soap-01`, `soap-02`,
+`avatar.webp` and `og.jpg`. The two soap-camera shots are meant to look lo-fi, so
+they are less of a problem there.

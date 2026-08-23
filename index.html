@@ -244,10 +244,9 @@ a:focus-visible, button:focus-visible {
   display: block;
   filter: saturate(0.96);
 }
-/* единая пропорция кадра: строки выравниваются по нижнему краю.
-   gallery-06 (384x640) обрезается по высоте на 10%, остальные попадают точно */
+/* исходники экспортированы ровно в 2:3 — сетка выравнивается без обрезки */
 .shot:not(.wide) img {
-  aspect-ratio: 427 / 640;
+  aspect-ratio: 2 / 3;
   object-fit: cover;
 }
 .shot.wide { grid-column: span 2; }
@@ -466,22 +465,40 @@ a:focus-visible, button:focus-visible {
     </div>
     <div class="gallery">
       <div class="shot reveal">
-        <img src="assets/gallery-01.webp" width="427" height="640" loading="lazy" decoding="async" alt="Портрет девушки в чёрном платье и голубых колготках в студийном свете">
+        <img src="assets/gallery-01-412.webp"
+             srcset="assets/gallery-01-206.webp 206w, assets/gallery-01-412.webp 412w, assets/gallery-01-618.webp 618w"
+             sizes="(min-width: 460px) 206px, calc(50vw - 24px)"
+             width="412" height="618" loading="lazy" decoding="async" alt="Портрет девушки в чёрном платье и голубых колготках в студийном свете">
       </div>
       <div class="shot reveal">
-        <img src="assets/gallery-02.webp" width="427" height="640" loading="lazy" decoding="async" alt="Девушка под белой фатой с букетом цветов">
+        <img src="assets/gallery-02-412.webp"
+             srcset="assets/gallery-02-206.webp 206w, assets/gallery-02-412.webp 412w, assets/gallery-02-618.webp 618w"
+             sizes="(min-width: 460px) 206px, calc(50vw - 24px)"
+             width="412" height="618" loading="lazy" decoding="async" alt="Девушка под белой фатой с букетом цветов">
       </div>
       <div class="shot reveal">
-        <img src="assets/gallery-03.jpg" width="427" height="640" loading="lazy" decoding="async" alt="Девушка с ангельскими крыльями сидит в траве, держась за крест из веток">
+        <img src="assets/gallery-03-412.webp"
+             srcset="assets/gallery-03-206.webp 206w, assets/gallery-03-412.webp 412w, assets/gallery-03-618.webp 618w"
+             sizes="(min-width: 460px) 206px, calc(50vw - 24px)"
+             width="412" height="618" loading="lazy" decoding="async" alt="Девушка с ангельскими крыльями сидит в траве, держась за крест из веток">
       </div>
       <div class="shot reveal">
-        <img src="assets/gallery-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Портрет в белом костюме Пьеро на тёмном фоне">
+        <img src="assets/gallery-04-412.webp"
+             srcset="assets/gallery-04-206.webp 206w, assets/gallery-04-412.webp 412w, assets/gallery-04-618.webp 618w"
+             sizes="(min-width: 460px) 206px, calc(50vw - 24px)"
+             width="412" height="618" loading="lazy" decoding="async" alt="Портрет в белом костюме Пьеро на тёмном фоне">
       </div>
       <div class="shot reveal">
-        <img src="assets/gallery-05.jpg" width="427" height="640" loading="lazy" decoding="async" alt="Светящаяся фигура в белом платье под сосной у зимнего озера">
+        <img src="assets/gallery-05-412.webp"
+             srcset="assets/gallery-05-206.webp 206w, assets/gallery-05-412.webp 412w, assets/gallery-05-618.webp 618w"
+             sizes="(min-width: 460px) 206px, calc(50vw - 24px)"
+             width="412" height="618" loading="lazy" decoding="async" alt="Светящаяся фигура в белом платье под сосной у зимнего озера">
       </div>
       <div class="shot reveal">
-        <img src="assets/gallery-06.jpg" width="384" height="640" loading="lazy" decoding="async" alt="Девушка в белом платье с длинными волосами в высокой траве у воды">
+        <img src="assets/gallery-06-412.webp"
+             srcset="assets/gallery-06-206.webp 206w, assets/gallery-06-412.webp 412w, assets/gallery-06-618.webp 618w"
+             sizes="(min-width: 460px) 206px, calc(50vw - 24px)"
+             width="412" height="618" loading="lazy" decoding="async" alt="Девушка в белом платье с длинными волосами в высокой траве у воды">
       </div>
     </div>
   </section>
