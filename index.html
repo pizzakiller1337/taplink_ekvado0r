@@ -14,14 +14,20 @@
 <meta property="og:title" content="Катя Ekvador">
 <meta property="og:description" content="Фото в стиле дримкор — будто их обработали во сне. Цены, примеры работ и запись на съёмку.">
 <meta property="og:image" content="https://ekvado0rprice.online/assets/og.jpg">
+<meta property="og:image:width" content="426">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Фото в стиле дримкор — работа Кати Ekvador">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Катя Ekvador">
+<meta name="twitter:description" content="Фото в стиле дримкор — будто их обработали во сне. Цены, примеры работ и запись на съёмку.">
 <meta name="twitter:image" content="https://ekvado0rprice.online/assets/og.jpg">
 
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-128.png" sizes="128x128" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 
-<link rel="preconnect" href="https://media.uprock.school" crossorigin>
-<link rel="preconnect" href="https://db.onlinewebfonts.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/nintendo-ntlg-db.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/eugusto.woff2" crossorigin>
 <link rel="preload" as="image" href="assets/avatar.webp">
 
 <script type="application/ld+json">
@@ -36,15 +42,17 @@
 }
 </script>
 
+<script>document.documentElement.classList.add('js-on');</script>
+
 <style>
 @font-face {
   font-family: 'Eugusto';
-  src: url('https://media.uprock.school/fonts/Eugusto_Cyr/Eugusto-Regular.otf') format('opentype');
+  src: url('assets/fonts/eugusto.woff2') format('woff2');
   font-display: swap;
 }
 @font-face {
   font-family: 'nintendo_NTLG-DB_001';
-  src: url('https://db.onlinewebfonts.com/t/11d2132c7015ada9618405a35c15c7cc.ttf') format('truetype');
+  src: url('assets/fonts/nintendo-ntlg-db.woff2') format('woff2');
   font-display: swap;
 }
 
@@ -108,7 +116,7 @@ a:focus-visible, button:focus-visible {
   pointer-events: none;
   opacity: 0.9;
   mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .phone::after {
   content: "";
@@ -222,6 +230,8 @@ a:focus-visible, button:focus-visible {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+  /* ячейка по высоте кадра: исходники 640 px, растягивать их нельзя */
+  align-items: start;
 }
 .shot {
   position: relative;
@@ -243,8 +253,6 @@ a:focus-visible, button:focus-visible {
   filter: saturate(0.96);
 }
 .shot:hover img, .shot:focus-visible img { transform: scale(1.06); filter: saturate(1.1); }
-.shot.tall { grid-row: span 2; }
-.shot.tall img { height: 100%; object-fit: cover; }
 .shot.wide { grid-column: span 2; }
 
 .price-card {
@@ -289,7 +297,7 @@ a:focus-visible, button:focus-visible {
   color: var(--ink);
 }
 .price-sub { margin-top: 16px; }
-.price-sub h4 {
+.price-sub h3 {
   font-family: var(--display);
   font-size: 14px;
   color: var(--heading);
@@ -305,7 +313,7 @@ a:focus-visible, button:focus-visible {
   padding-top: 14px;
   border-top: 1px solid rgba(131,143,88,0.22);
 }
-.included h4 {
+.included h3 {
   font-family: var(--display);
   font-size: 14px;
   color: var(--heading);
@@ -519,7 +527,7 @@ a:focus-visible, button:focus-visible {
       <span class="dot" aria-hidden="true">&#9670;</span>
     </div>
     <div class="gallery">
-      <button type="button" class="shot tall reveal" data-full="assets/gallery-01.webp">
+      <button type="button" class="shot reveal" data-full="assets/gallery-01.webp">
         <img src="assets/gallery-01.webp" width="427" height="640" loading="lazy" decoding="async" alt="Портрет девушки в чёрном платье и голубых колготках в студийном свете">
       </button>
       <button type="button" class="shot reveal" data-full="assets/gallery-02.webp">
@@ -528,7 +536,7 @@ a:focus-visible, button:focus-visible {
       <button type="button" class="shot reveal" data-full="assets/gallery-03.jpg">
         <img src="assets/gallery-03.jpg" width="427" height="640" loading="lazy" decoding="async" alt="Девушка с ангельскими крыльями сидит в траве, держась за крест из веток">
       </button>
-      <button type="button" class="shot tall reveal" data-full="assets/gallery-04.webp">
+      <button type="button" class="shot reveal" data-full="assets/gallery-04.webp">
         <img src="assets/gallery-04.webp" width="427" height="640" loading="lazy" decoding="async" alt="Портрет в белом костюме Пьеро на тёмном фоне">
       </button>
       <button type="button" class="shot reveal" data-full="assets/gallery-05.jpg">
@@ -552,7 +560,7 @@ a:focus-visible, button:focus-visible {
       <div class="price-row"><span>Предоплата</span><span>1 000 &#8381;</span></div>
       <p class="price-note">Вы получаете 25–35 фото в обработке, плюс материал бэков на телефон (iPhone 15 Pro) — видео для рилсов.</p>
       <div class="included">
-        <h4>В стоимость входит</h4>
+        <h3>В стоимость входит</h3>
         <ul>
           <li>Обработка фотографий</li>
           <li>Бронирование студии мной (если съёмка в студии)</li>
@@ -561,11 +569,11 @@ a:focus-visible, button:focus-visible {
         <p class="extra">При возможности предлагаю свой реквизит для съёмки — какие-то элементы одежды.</p>
       </div>
       <div class="price-sub">
-        <h4>ТФП</h4>
+        <h3>ТФП</h3>
         <p>Интересует в случае, если меня цепляет концепт съёмки — плюс есть идея и реквизит для съёмки.</p>
       </div>
       <div class="price-sub">
-        <h4>Обложки и мероприятия</h4>
+        <h3>Обложки и мероприятия</h3>
         <p>Если нужно снять обложку или мероприятие — всё обговаривается индивидуально.</p>
       </div>
     </div>
@@ -637,7 +645,6 @@ a:focus-visible, button:focus-visible {
 </div>
 
 <script>
-  document.body.classList.add('js-on');
   try {
     var io = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
@@ -718,13 +725,21 @@ a:focus-visible, button:focus-visible {
   }, { passive: true });
 
   var sticky = document.getElementById('stickyCta'),
-      bottomCta = document.querySelector('.cta--bottom');
+      bottomCta = document.querySelector('.cta--bottom'),
+      stickyQueued = false;
   function updateSticky(){
+    stickyQueued = false;
     var show = window.scrollY > 450 && bottomCta.getBoundingClientRect().top > window.innerHeight;
     sticky.classList.toggle('show', show);
   }
-  window.addEventListener('scroll', updateSticky, { passive: true });
-  window.addEventListener('resize', updateSticky);
+  /* замер лейаута — не чаще одного раза на кадр */
+  function queueSticky(){
+    if (stickyQueued) return;
+    stickyQueued = true;
+    requestAnimationFrame(updateSticky);
+  }
+  window.addEventListener('scroll', queueSticky, { passive: true });
+  window.addEventListener('resize', queueSticky);
   updateSticky();
 </script>
 </body>

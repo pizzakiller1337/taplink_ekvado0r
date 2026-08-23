@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# локальные конфиги
+.claude/
+
+# editors
+.vscode/
+.idea/
+*.swp
+
+# temp
+*.tmp
+*.bak
+index.tmp
