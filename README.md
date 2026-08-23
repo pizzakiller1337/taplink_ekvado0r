@@ -52,23 +52,27 @@ reviewing before any commercial use.
 The gallery is a two-column grid. Each cell is 206 CSS px wide at the 460 px layout
 width, and `calc(50vw - 24px)` below it — that is what the `sizes` attribute encodes.
 
-The six gallery photos come from 4–8 megapixel originals, centre-cropped to 2:3 and
-exported to WebP (quality 80) at three widths, one per pixel density:
+Every photo comes from a 4–8 megapixel original, exported to WebP (quality 80) at
+three widths, one per pixel density. The gallery shots are centre-cropped to 2:3; the
+two soap-camera shots keep their native ratio, since each spans the full width and has
+no neighbour to line up with.
 
-| Width | Serves | Total for six photos |
-| --- | --- | --- |
-| `206w` | 1x displays | 49 KB |
-| `412w` | 2x displays | 160 KB |
-| `618w` | 3x displays | 345 KB |
+| | 1x | 2x | 3x | Grid slot |
+| --- | --- | --- | --- | --- |
+| Six gallery photos | `206w` — 49 KB | `412w` — 160 KB | `618w` — 345 KB | 206 CSS px |
+| Two soap photos | `424w` — 32 KB | `848w` — 135 KB | `1272w` — 408 KB | 424 CSS px |
+| **Whole page, scrolled** | **81 KB** | **296 KB** | **753 KB** | |
 
-The browser picks one per photo through `srcset`; verified against the server log at
-each density. Nothing in the gallery is ever upscaled. All six are lazy-loaded, so none
-of this lands on first paint.
+The browser picks one per photo through `srcset`; verified against the server log with
+a fresh profile at each density. Nothing is ever upscaled. Every photo is lazy-loaded,
+so none of this lands on first paint — that stays at about 49 KB.
 
-When replacing a photo, export it at all three widths and keep the exact 2:3 ratio —
-the grid relies on it to line rows up. Anything wider than 618 px is wasted: no cell
-ever renders larger than that.
+Click-to-enlarge loads a separate larger file: `-1200` for the gallery (2:3), and the
+`-1272` grid image for the soap shots. While it downloads, the thumbnail already in
+cache is shown stretched to the final geometry, so the view opens instantly and does
+not jump when the full frame arrives.
 
-Still at the old 640 px export, no originals available yet: `soap-01`, `soap-02`,
-`avatar.webp` and `og.jpg`. The two soap-camera shots are meant to look lo-fi, so
-they are less of a problem there.
+When replacing a gallery photo, export all three widths plus the `-1200`, and keep the
+exact 2:3 ratio — the grid relies on it to line rows up.
+
+Still at the old 640 px export, no originals yet: `avatar.webp` and `og.jpg`.
