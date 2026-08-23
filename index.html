@@ -437,8 +437,16 @@ a:focus-visible, button:focus-visible {
 }
 .lightbox.on { display: flex; }
 .lightbox img { max-width: 100%; max-height: 90vh; max-height: 90dvh; border-radius: 4px; }
-/* миниатюра-заглушка занимает ту же геометрию, что и полный кадр: подмена без скачка */
-.lightbox img.pending { height: 90vh; height: 90dvh; width: auto; }
+/* Заглушка занимает ту же геометрию, что и полный кадр: подмена без скачка.
+   Размер задаём по ширине (--ar = пропорция кадра), а высоту считает браузер —
+   иначе на узком экране max-width обрезал бы ширину при фиксированной высоте
+   и картинка вытягивалась бы по вертикали. */
+.lightbox img.pending {
+  width: min(100%, calc(90vh * var(--ar, 0.6667)));
+  width: min(100%, calc(90dvh * var(--ar, 0.6667)));
+  aspect-ratio: var(--ar, 0.6667);
+  height: auto;
+}
 .lb-close {
   position: absolute;
   top: 16px;
@@ -707,6 +715,9 @@ a:focus-visible, button:focus-visible {
     lbimg.alt = thumb ? thumb.alt : '';
     lbcount.textContent = (current + 1) + ' / ' + shots.length;
     /* миниатюра уже в кеше — показываем мгновенно, крупный кадр подставляем следом */
+    /* пропорция из атрибутов миниатюры: известна до того, как та загрузится */
+    var aw = thumb && +thumb.getAttribute('width'), ah = thumb && +thumb.getAttribute('height');
+    if (aw && ah) lbimg.style.setProperty('--ar', aw / ah);
     lbimg.classList.add('pending');
     lbimg.src = thumb ? (thumb.currentSrc || thumb.src) : full;
     var pending = new Image();
